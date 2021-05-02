@@ -56,12 +56,18 @@ err_dev_close:
 
 int adt7410_read8(adt7410 *dev, uint8_t addr, uint8_t *val)
 {
+#ifdef ADT7410_DEBUG
+    eprintf("Address: 0x%x", addr);
+#endif
     char o_buf[1] = {addr};
     return i2cbus_xfer(dev, o_buf, 1, val, 1, 0);
 }
 
 int adt7410_read16(adt7410 *dev, uint8_t addr, int16_t *val)
 {
+#ifdef ADT7410_DEBUG
+    eprintf("Address: 0x%x", addr);
+#endif
     char o_buf[1] = {addr};
     *val = 0;
     char *i_buf = val; // reinterpret pointer
@@ -76,12 +82,18 @@ int adt7410_read16(adt7410 *dev, uint8_t addr, int16_t *val)
 
 int adt7410_write8(adt7410 *dev, uint8_t addr, uint8_t val)
 {
+#ifdef ADT7410_DEBUG
+    eprintf("Address: 0x%x", addr);
+#endif
     char buf[2] = {addr, val};
     return i2cbus_write(dev, buf, 2);
 }
 
 int adt7410_write16(adt7410 *dev, uint8_t addr, int16_t val)
 {
+#ifdef ADT7410_DEBUG
+    eprintf("Address: 0x%x", addr);
+#endif
     char buf[4] = {addr, (val & 0xff00) >> 8, addr + 1, val & 0xff};
     return i2cbus_write(dev, buf, 4);
 }
