@@ -36,15 +36,15 @@ int adt7410_init(adt7410 *dev, int bus, int addr)
         eprintf("Identity not matching: 0x%02x", val);
         goto err_dev_close;
     }
-    if (adt7410_write16(dev, ADT7410_REG_THIGH_H, ADT7410_TMP_HIGH) < 0)
+    if (adt7410_write16(dev, ADT7410_REG_THIGH, ADT7410_TMP_HIGH) < 0)
     {
         eprintf("Could not set high temp");
     }
-    if (adt7410_write16(dev, ADT7410_REG_TLOW_H, ADT7410_TMP_LOW) < 0)
+    if (adt7410_write16(dev, ADT7410_REG_TLOW, ADT7410_TMP_LOW) < 0)
     {
         eprintf("Could not set high temp");
     }
-    if (adt7410_write16(dev, ADT7410_REG_TCRIT_H, ADT7410_TMP_CRIT) < 0)
+    if (adt7410_write16(dev, ADT7410_REG_TCRIT, ADT7410_TMP_CRIT) < 0)
     {
         eprintf("Could not set high temp");
     }
