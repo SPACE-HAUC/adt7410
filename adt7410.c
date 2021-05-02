@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
         printf("Invocation: %s <Bus ID> [<Optional I2C address (hex), default 0x4b>]\n\n");
         return 0;
     }
-    sighandler(SIGINT, &sighandler);
+    signal(SIGINT, &sighandler);
     int bus = atoi(argv[1]);
     int addr = 0x4b;
     if (argc == 3)
