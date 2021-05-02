@@ -11,7 +11,7 @@ adt7410: $(COBJS)
 	$(CC) -o $@.out $(COBJS) $(EDLDFLAGS)
 
 %.o: %.c
-	$(CC) $(EDCFLAGS) -o %@ -c %<
+	$(CC) $(EDCFLAGS) -o $@ -c $<
 
 .PHONY: clean
 
