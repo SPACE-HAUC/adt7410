@@ -22,7 +22,7 @@ int adt7410_init(adt7410 *dev, int bus, int addr)
 {
     if (i2cbus_open(dev, bus, addr) < 0)
     {
-        epritnf("Could not open bus %d: device 0x%02x", bus, addr);
+        eprintf("Could not open bus %d: device 0x%02x", bus, addr);
         return -1;
     }
     uint8_t val;
@@ -109,7 +109,7 @@ int adt7410_read_status(adt7410 *dev, uint8_t *status)
     stat >>= 4; // bottom 4 bits are useless
     if (stat & 0x1)
     {
-        epritnf("Temperature too low");
+        eprintf("Temperature too low");
     }
     if (stat & 0x2)
     {
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 {
     if (!((argc == 2) || (argc == 3)))
     {
-        printf("Invocation: %s <Bus ID> [<Optional I2C address (hex), default 0x4b>]\n\n");
+        printf("Invocation: %s <Bus ID> [<Optional I2C address (hex), default 0x4b>]\n\n", argv[0]);
         return 0;
     }
     signal(SIGINT, &sighandler);
